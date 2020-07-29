@@ -1,0 +1,8 @@
+.btn{
+    display: grid ;
+    gap: 5px ;
+    margin: 20px 0 ;
+    border: 1px solid ;
+    border-color: white ;
+    color: white ;
+}

@@ -61,18 +61,18 @@ let time = 60
 let countdown
 
 const popupquiz = () => {
-    document.getElementById('question').textContent = quiz[quiznum].question
-    let answers = quiz[quiznum].answers
-    
-    document.getElementById('answers').innerHTML = ''
+  document.getElementById('question').textContent = quiz[quiznum].question
+  let answers = quiz[quiznum].answers
+  
+  document.getElementById('answers').innerHTML = ''
 
-    for (let i=0; i<answers.length; i++){
-        let answerElement = document.createElement('button')
-        answerElement.className = 'anSwer btn btn-secondary btn=lg'
-        answerElement.dataset.answer = answers[i]
-        answerElement.textContent = answers[i]
-        document.getElementById('answers').append(answerElement)
-    }
+  for (let i=0; i<answers.length; i++){
+      let answerElement = document.createElement('button')
+      answerElement.className = 'anSwer btn btn-secondary btn=lg'
+      answerElement.dataset.answer = answers[i]
+      answerElement.textContent = answers[i]
+      document.getElementById('answers').append(answerElement)
+  }
 }
 
 
