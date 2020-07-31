@@ -1,3 +1,4 @@
+//set up an array for questions and answers 
 let quiz = [
     {
         "question": "What is the correct HTML element for inserting a line break?",
@@ -60,6 +61,7 @@ let score = 0
 let time = 60
 let countdown
 
+//set up function to pop up quiz after we click the 'start' button
 const popupquiz = () => {
   document.getElementById('question').textContent = quiz[quiznum].question
   let answers = quiz[quiznum].answers
@@ -75,9 +77,9 @@ const popupquiz = () => {
   }
 }
 
-
+//set up function to show messages when users pick an answer
 const pickanswer = answer => {
-
+  //if a correct answer was picked, score goes up
   if (answer === quiz[quiznum].correct_answer) {
     score++
     document.getElementById('score'),textContent = score
@@ -91,9 +93,9 @@ const pickanswer = answer => {
     resultElement.textContent = `You're wrong.`
     document.getElementById('answers').append(resultElement)
   }
-
+  //pop up the next question
   quiznum++
-
+  //wait for one second to show the next question
   setTimeout(()=>{
     if(quiznum<quiz.length){
       popupquiz()
@@ -103,7 +105,7 @@ const pickanswer = answer => {
   }, 1000)
 }
 
-
+//submit the score to leaderboard
 const submitScore = submission =>{
   let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
 
@@ -112,7 +114,7 @@ const submitScore = submission =>{
   leaderboard.sort((a,b)=>{
     return b.score-a.score
   })
-
+  //create a table to storage the leaderboard information
   let tableElement = document.createElement('table')
   tableElement.className = 'table'
   tableElement.innerHTML = `
@@ -142,6 +144,7 @@ const submitScore = submission =>{
   document.getElementById('quiz').append(tableElement)
 }
 
+//if time ran out or all questions were answered
 const finish = () =>{
   document.getElementById('quiz').innerHTML=`
     <h1 class="display-2>Finish</h1>
@@ -158,6 +161,7 @@ const finish = () =>{
   `
 }
 
+//after we click 'start', time starts to countdown
 document.getElementById('startquiz').addEventListener('click', () =>{
    
   countdown = setInterval(()=>{
@@ -173,7 +177,7 @@ document.getElementById('startquiz').addEventListener('click', () =>{
   popupquiz()
 })
 
-
+//if answers were clicked, move to next question or if submit was clicked, move to leaderboard.
 document.addEventListener('click', event =>{
   if(event.target.classList.contains('anSwer')){
     pickanswer(event.target.dataset.answer)
